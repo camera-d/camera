@@ -85,8 +85,7 @@ body {
 
 #photoF,
 #photoB {
-  width: 400px;
-  height: 300px;
+ max-width: 300px;
 }
 
 /* 追加分CSS↑ */
