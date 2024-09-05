@@ -448,7 +448,7 @@ function captureImage() {
   downloadButton.download = "captured_image.png";
   downloadButton.style.display = "block";
 }
-
+}
 //内カメ外カメのトグル
 document.getElementById("toggle-camera").addEventListener("click", () => {
   isFrontCamera = !isFrontCamera;
@@ -574,5 +574,6 @@ document.addEventListener("DOMContentLoaded", function () {
     navMenu.style.height = "0"; // メニューを非表示にするとき高さを0に
     overlay.classList.remove("show"); // オーバーレイを非表示
   });
+  
 });
-// </script>
+
