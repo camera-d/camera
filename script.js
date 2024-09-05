@@ -382,25 +382,34 @@ function captureImage() {
     context.translate(canvas.width, 0);
     context.scale(-1, 1);
   }
+   // キャンバスのサイズ
+  const canvasWidth = canvas.width;
+  const canvasHeight = canvas.height;
+  
+// ガイドフレームのサイズと位置を設定
+          const frameWidth = 300;
+          const frameHeight = 300;
 
+          // ガイドフレームの画像を描画
+          const guideFrameImg = new Image();
+          guideFrameImg.src = "前面 のコピー (1).png"; // 画像のパスを指定
+          guideFrameImg.onload = () => {
+            const frameX = (canvas.width - frameWidth) / 2;
+            const frameY = (canvas.height - frameHeight) / 2;
+
+            context.drawImage(
+              guideFrameImg,
+              frameX,
+              frameY,
+              frameWidth,
+              frameHeight
+            );
   //画像を表示
   context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-  // ガイドフレームを描画8/20
-  const guideFrame = document.querySelector(".guide-frame");
-  // ガイドフレームを 300px x 300px で表示
-  const guideFrameWidth = 300;
-  const guideFrameHeight = 300;
+ 
 
-  // キャンバスのサイズ
-  const canvasWidth = canvas.width;
-  const canvasHeight = canvas.height;
-
-  // ガイドフレームを中央に配置するための計算
-  const guideFrameX = (canvasWidth - guideFrameWidth) / 2;
-  const guideFrameY = (canvasHeight - guideFrameHeight) / 2;
-  //   const guideFrameX = 0; // キャンバス上の表示位置 X
-  //   const guideFrameY = 0; // キャンバス上の表示位置 Y
+ 
 
   context.drawImage(
     guideFrame,
@@ -410,7 +419,7 @@ function captureImage() {
     guideFrameHeight
   );
 
-  //   context.drawImage(guideFrame, 0, 0, canvas.width, canvas.height);
+  
 
   dataURL = canvas.toDataURL("image/png");
 
