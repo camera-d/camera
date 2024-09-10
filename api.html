@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Test</title>
+</head>
+<body>
+    <h1>API Test</h1>
+    <input type="text" id="messageInput" placeholder="Enter a message">
+    <button id="sendButton">Send</button>
+    <p id="responseOutput"></p>
+
+    <!-- 既存のJavaScriptコードと新しく追加したAPI呼び出しのコードを含む -->
+    <script>
+        // 既存のJavaScriptコード
+        function existingFunction() {
+            console.log("Existing function called");
+        }
+
+        // 新しく追加するAPI呼び出しの関数
+        function callApi() {
+            const message = document.getElementById('messageInput').value;
+
+            fetch(`http://127.0.0.1:5000/api/echo?message=${encodeURIComponent(message)}`)
+                .then(response => response.json())
+                .then(data => {
+                    console.log('API response:', data.message);
+                    document.getElementById('responseOutput').textContent = data.message;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        // 既存のイベントリスナーや処理にAPI呼び出しを統合
+        document.getElementById('sendButton').addEventListener('click', function() {
+            existingFunction();  // 既存の機能を呼び出す
+            callApi();           // API呼び出しを行う
+        });
+    </script>
+</body>
+</html>
