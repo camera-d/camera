@@ -49,6 +49,8 @@ body {
 }
 #kiyaku {
   text-align: center;
+
+  /* font-family: "BIZ UD Gothic", "Noto Sans JP", "Arial", sans-serif; */
   align-items: center; /* 内部テキストを垂直方向に中央に配置（任意） */
   justify-content: center; /* 内部テキストを水平方向に中央に配置（任意） */
 }
@@ -96,8 +98,7 @@ body {
   margin-left: 0;
 }
 .topbottom,
-#outcamera,
-#incamera {
+#outcamera {
   color: black;
   width: 100%;
   height: 100px;
@@ -107,6 +108,46 @@ body {
   border-bottom: none; /* 下辺にボーダーなし */
   border-left: none; /* 左辺にボーダーなし */
   font-size: 18px;
+}
+#incamera {
+  color: black;
+  width: 100%;
+  height: 100px;
+  margin: 0;
+  border-top: 1px solid black;
+  border-right: none; /* 右辺にボーダーなし */
+  border-bottom: 1px solid black;
+  border-left: none; /* 左辺にボーダーなし */
+  font-size: 18px;
+}
+.scroll-box {
+  height: 400px;
+  overflow-x: scroll; /* 横スクロールを可能にする */
+  padding-bottom: 10px; /* スクロールバーのためのパディング */
+  -webkit-overflow-scrolling: touch; /* スムーズなスクロールを提供 */
+}
+
+.scroll-box::-webkit-scrollbar {
+  height: 0; /* スクロールバーの高さ */
+}
+.f_area {
+  width: 2000px;
+  display: flex; /* 子要素を横に並べるためのフレックスボックス */
+  flex-wrap: nowrap; /* 子要素が折り返されないようにする */
+}
+
+.scroll-box .f_area button {
+  flex: 0 0 80%; /* 各ボタンの幅を親要素の80%に設定 */
+  margin-right: 10px; /* ボタン間のスペース */
+  box-sizing: border-box; /* ボックスサイズにパディングを含める */
+}
+/* .scroll-box .f_area .f_one {
+  width: 33.333%;
+} */
+.scroll-box .f_area button img {
+  width: 100%; /* 画像の幅を親要素に合わせる */
+  height: auto; /* 画像の高さを自動調整 */
+  vertical-align: top;
 }
 
 #photoF,
