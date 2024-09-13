@@ -49,8 +49,6 @@ body {
 }
 #kiyaku {
   text-align: center;
-
-  /* font-family: "BIZ UD Gothic", "Noto Sans JP", "Arial", sans-serif; */
   align-items: center; /* 内部テキストを垂直方向に中央に配置（任意） */
   justify-content: center; /* 内部テキストを水平方向に中央に配置（任意） */
 }
