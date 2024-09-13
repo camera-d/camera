@@ -1,6 +1,7 @@
 body {
   margin: 0;
 }
+
 /* 追加分CSS↓ */
 #finalconfirmation {
   display: flex;
@@ -36,7 +37,6 @@ body {
   left: 200px;
 }
 
-#kiyaku,
 #typeselect,
 #cameraselect,
 #tempselect,
@@ -47,9 +47,16 @@ body {
   height: 100vh; /* ビューポートの高さ全体を使用 */
   text-align: center;
 }
-/* #kiyaku {
-  font-family: "BIZ UD Gothic", "Noto Sans JP", "Arial", sans-serif;
-} */
+#kiyaku {
+  text-align: center;
+
+  /* font-family: "BIZ UD Gothic", "Noto Sans JP", "Arial", sans-serif; */
+  align-items: center; /* 内部テキストを垂直方向に中央に配置（任意） */
+  justify-content: center; /* 内部テキストを水平方向に中央に配置（任意） */
+}
+#tezyun {
+  text-align: left;
+}
 #kiyakudoui,
 #startshoot {
   background-color: orange;
@@ -63,24 +70,45 @@ body {
 
 #tops,
 #bottoms {
-  background-color: orange;
   color: black;
-  padding: 40px 70px;
-  margin: 20px;
-  border: none;
-  cursor: pointer;
-  font-size: 30px;
+  width: 100%;
+  height: 100px;
+  margin: 0;
+  border-top: 1px solid black;
+  border-right: none; /* 右辺にボーダーなし */
+  border-bottom: none; /* 下辺にボーダーなし */
+  border-left: none; /* 左辺にボーダーなし */
+  font-size: 18px;
 }
-
+#dress {
+  color: black;
+  width: 100%;
+  height: 100px;
+  margin: 0;
+  border-top: 1px solid black;
+  border-right: none; /* 右辺にボーダーなし */
+  border-bottom: 1px solid black; /* 下辺にボーダーなし */
+  border-left: none; /* 左辺にボーダーなし */
+  font-size: 18px;
+}
+.button-img {
+  width: 24px; /* 画像の幅 */
+  height: 24px; /* 画像の高さ */
+  margin-right: 10px; /* 画像とテキストの間隔 */
+  margin-left: 0;
+}
+.topbottom,
 #outcamera,
 #incamera {
-  background-color: orange;
   color: black;
-  padding: 70px 90px;
-  margin: 20px;
-  border: none;
-  cursor: pointer;
-  font-size: 30px;
+  width: 100%;
+  height: 100px;
+  margin: 0;
+  border-top: 1px solid black;
+  border-right: none; /* 右辺にボーダーなし */
+  border-bottom: none; /* 下辺にボーダーなし */
+  border-left: none; /* 左辺にボーダーなし */
+  font-size: 18px;
 }
 
 #photoF,
@@ -132,6 +160,7 @@ body {
 header {
   background-color: #333;
   color: white;
+  height: 89px;
   padding: 10px;
   display: flex;
   justify-content: space-between;
