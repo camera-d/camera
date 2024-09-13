@@ -25,32 +25,39 @@ let katagami = 0;
 //↑型紙の種類がトップス＝1,ボトムス＝2
 
 //規約同意ボタン
+//スタートボタンに変更
 const kiyakudoui = document
   .getElementById("kiyakudoui")
   .addEventListener("click", () => {
     ScreenTransition(1);
   });
 //トップスボトムスボタン
+const hiddenbottom = document.getElementById("hiddenbottom");
+
 const tops = document.getElementById("tops").addEventListener("click", () => {
   katagami = 1;
   katagamiEvent();
   ScreenTransition(2);
+  hiddenbottom.style.display = "none";
+  incamera.style.display = "block";
 });
 const bottoms = document
   .getElementById("bottoms")
   .addEventListener("click", () => {
     katagami = 2;
-    katagamiEvent();
 
+    katagamiEvent();
     ScreenTransition(2);
+    hiddenbottom.style.display = "block";
+    incamera.style.display = "none";
   });
 //内カメ外カメ設定ボタン
 //内↓
-const incamera = document
-  .getElementById("incamera")
-  .addEventListener("click", () => {
-    ScreenTransition(3);
-  });
+const incamera = document.getElementById("incamera");
+
+incamera.addEventListener("click", () => {
+  ScreenTransition(3);
+});
 //外カメ
 const outcamera = document
   .getElementById("outcamera")
