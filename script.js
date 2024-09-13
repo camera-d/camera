@@ -393,8 +393,10 @@ function captureImage() {
 
   // ガイドフレームを描画8/20
   const guideFrame = document.querySelector(".guide-frame");
+  const frameX = (canvas.width - 300) / 2;
+  const frameY = (canvas.height - 300) / 2;
 
-  context.drawImage(guideFrame, 0, 0, 300, 300);
+  context.drawImage(guideFrame, frameX, frameY, 300, 300);
 
   //↑↑
 
