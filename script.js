@@ -95,36 +95,64 @@ const temp = document.getElementById("temp").addEventListener("click", () => {
   ScreenTransition(4);
 });
 
+//トップスの選択肢
+let topstemp = [
+  { src: "Demotops.png", value: "tops1" },
+  { src: "Demotops.png", value: "tops2" },
+  { src: "Demotops.png", value: "tops3" },
+  { src: "Demotops.png", value: "tops4" },
+  { src: "Demotops.png", value: "non-temp" },
+]; //後にimgファイルにする
+//ボトムスの選択肢
+let bottomstemp = [
+  { src: "png", value: "bottoms1" },
+  { src: "png", value: "bottoms2" },
+  { src: "png", value: "non-temp" },
+];
+
 function katagamiEvent() {
   // JavaScriptでボタンを挿入するコード
   // idはボタンコンテナ
   const buttonContainer = document.getElementById("button-container");
-
-  //トップスの選択肢
-  let topstemp = [
-    "短丈Tシャツ",
-    "ビッグシルエットTシャツ",
-    "パーカー",
-    "カラーシャツ",
-    "テンプレートを使用しない",
-  ]; //後にimgファイルにする
-  //ボトムスの選択肢
-  let bottomstemp = ["パンツ", "台形ミニスカート", "テンプレートを使用しない"];
+  const f_area = document.querySelector(".f_area");
 
   // ボタンコンテナ内の既存のボタンを削除
-  while (buttonContainer.firstChild) {
-    buttonContainer.removeChild(buttonContainer.firstChild);
+  while (f_area.firstChild) {
+    f_area.removeChild(f_area.firstChild);
   }
 
   if (katagami == 1) {
     //トップスの場合
     // 1から5までのボタンを生成して挿入
-    for (let i = 0; i < topstemp.length; i++) {
+    // for (let i = 0; i < topstemp.length; i++) {
+    //   // 新しいボタン要素を作成
+    //   const button = document.createElement("button");
+    //   button.textContent = topstemp[i]; // ボタンのテキストを設定
+    //   buttonContainer.appendChild(button); // コンテナにボタンを追加
+    // }
+    // ▽▽9/13変更
+    let data = topstemp; // トップスデータを使用
+    data.forEach((item) => {
       // 新しいボタン要素を作成
       const button = document.createElement("button");
-      button.textContent = topstemp[i]; // ボタンのテキストを設定
-      buttonContainer.appendChild(button); // コンテナにボタンを追加
-    }
+      button.style.all = "unset";
+
+      // 画像要素を作成
+      const img = document.createElement("img");
+      img.src = item.src;
+      img.alt = "Image Button";
+      img.style.maxWidth = "100%";
+      img.style.height = "auto";
+      img.style.transition = "transform .5s";
+
+      // ボタンに画像を追加
+      button.appendChild(img);
+      // ボタンのクリックイベントを設定
+      button.addEventListener("click", () => katagamiFreamchange(item.value));
+      // コンテナにボタンを追加
+      console.log(f_area);
+      f_area.appendChild(button);
+    });
   } else if (katagami == 2) {
     //ボトムスの場合
     // ボタンを生成して挿入
@@ -137,6 +165,11 @@ function katagamiEvent() {
   } else if (katagami > 2) {
     window.alert("型紙がありません");
   }
+}
+//ここで、型紙に応じたフレームを撮影画面でだす。3班に渡す値かもしれない
+function katagamiFreamchange(x) {
+  // 引数 x に応じた処理を実行する
+  alert(`デバッグ用アラート。フレームは値: ${x}`);
 }
 
 //撮影開始ボタンにて、カメラ画面への切り替えと、カウントを１回目に設定
