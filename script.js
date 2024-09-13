@@ -64,21 +64,21 @@ const outcamera = document
 //ガイドフレームの多色化ボタン
 let framecolor = "red"; //初期値
 
-const guideframe = document.querySelector(".guide-frame");
+// const guideFrame = document.querySelector(".guide-frame");
 const guidebtn = document
   .getElementById("guidebtn")
   .addEventListener("click", () => {
     if (framecolor == "red") {
-      console.log(guideframe);
+      console.log(guideFrame);
       const newImageUrl = "Tシャツアイコン青.png"; // ここに新しい画像のURLを指定
       // 画像要素のsrc属性を変更
-      guideframe.setAttribute("src", newImageUrl);
+      guideFrame.setAttribute("src", newImageUrl);
       framecolor = "blue";
     } else {
-      console.log(guideframe);
+      console.log(guideFrame);
       const newImageUrl = "Tシャツアイコン7.png"; // ここに新しい画像のURLを指定
       // 画像要素のsrc属性を変更
-      guideframe.setAttribute("src", newImageUrl);
+      guideFrame.setAttribute("src", newImageUrl);
       framecolor = "red";
     }
   });
@@ -366,15 +366,13 @@ function shootText() {
 
 let dataURL;
 
+// 0902↓
+
+// const guideFrame = document.querySelector(".guide-frame");
 function captureImage() {
   //撮影と、画像表示のイベント
-
   const canvas = document.getElementById("canvas");
   const video = document.getElementById("video");
-
-  canvas.width = video.videoWidth;
-  canvas.height = video.videoHeight;
-
   const context = canvas.getContext("2d");
 
   // 画像を水平に反転する(内カメのときだけ)
@@ -382,44 +380,23 @@ function captureImage() {
     context.translate(canvas.width, 0);
     context.scale(-1, 1);
   }
-   // キャンバスのサイズ
-  const canvasWidth = canvas.width;
-  const canvasHeight = canvas.height;
-  
-// ガイドフレームのサイズと位置を設定
-          const frameWidth = 300;
-          const frameHeight = 300;
+  // ビデオのサイズに合わせてキャンバスのサイズを設定
+  // ビデオの表示サイズを取得
+  const videoWidth = video.clientWidth;
+  const videoHeight = video.clientHeight;
 
-          // ガイドフレームの画像を描画
-          const guideFrameImg = new Image();
-          guideFrameImg.src = "前面 のコピー (1).png"; // 画像のパスを指定
-          guideFrameImg.onload = () => {
-            const frameX = (canvas.width - frameWidth) / 2;
-            const frameY = (canvas.height - frameHeight) / 2;
-
-            context.drawImage(
-              guideFrameImg,
-              frameX,
-              frameY,
-              frameWidth,
-              frameHeight
-            );
-  //画像を表示
+  // Canvas のサイズをビデオの表示サイズに合わせる
+  canvas.width = videoWidth;
+  canvas.height = videoHeight;
+  // キャンバスにビデオの内容を描画
   context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
- 
+  // ガイドフレームを描画8/20
+  const guideFrame = document.querySelector(".guide-frame");
 
- 
+  context.drawImage(guideFrame, 0, 0, 300, 300);
 
-  context.drawImage(
-    guideFrame,
-    guideFrameX,
-    guideFrameY,
-    guideFrameWidth,
-    guideFrameHeight
-  );
-
-  
+  //↑↑
 
   dataURL = canvas.toDataURL("image/png");
 
@@ -448,7 +425,7 @@ function captureImage() {
   downloadButton.download = "captured_image.png";
   downloadButton.style.display = "block";
 }
-}
+
 //内カメ外カメのトグル
 document.getElementById("toggle-camera").addEventListener("click", () => {
   isFrontCamera = !isFrontCamera;
@@ -574,6 +551,5 @@ document.addEventListener("DOMContentLoaded", function () {
     navMenu.style.height = "0"; // メニューを非表示にするとき高さを0に
     overlay.classList.remove("show"); // オーバーレイを非表示
   });
-  
 });
-
+// </script>
