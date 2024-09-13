@@ -68,6 +68,8 @@
       <!-- カメラ本体 -->
       <div class="camera-container">
         <video id="video" autoplay muted playsinline></video>
+        <!-- <div class="guide-frame"></div> -->
+
         <div>
           <!-- ガイドフレーム -->
           <img
@@ -78,15 +80,16 @@
           <!-- 追加: タイマー表示 -->
           <div id="timer">5</div>
         </div>
-        <!-- 撮影ボタン -->
-        <button id="capture">撮影</button>
-        <button id="toggle-camera">カメラ切り替え</button>
-        <button id="guidebtn">ガイドフレームの色</button>
-
-        <!-- ↓カメラの付属 -->
-        <canvas id="canvas" style="display: none"></canvas>
       </div>
+      <!-- ↓カメラの付属 -->
+      <canvas id="canvas" style="visibility: hidden"></canvas>
+
+      <!-- 撮影ボタン -->
+      <button id="capture">撮影</button>
+      <button id="toggle-camera">カメラ切り替え</button>
+      <button id="guidebtn">ガイドフレームの色</button>
     </div>
+
     <!-- 確認画面（前） -->
     <div class="scr" id="previewF">
       <p>プレビュー（前）</p>
