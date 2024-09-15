@@ -82,30 +82,70 @@ const outcamera = document
     ScreenTransition(3);
   });
 
-//scrに見本画像、後ろにフレーム画像
+//srcに見本画像、後ろにフレーム画像
 //トップスの選択肢
 let topstemp = [
   {
-    //ショート丈Tシャツ
+    name: "ショート丈Tシャツ",
     src: "Demotops.png",
     front: "images/shortT_front.png",
     back: "images/shortT_back.png",
     sleeve: "images/shortT_sleeve.png",
   },
-  { src: "Demotops.png", front: "tops2", back: "", sleeve: "" },
-  { src: "Demotops.png", front: "tops3", back: "", sleeve: "" },
-  { src: "Demotops.png", front: "tops4", back: "", sleeve: "" },
-  { src: "Demotops.png", front: "non-temp", back: "", sleeve: "" },
+  {
+    name: "オーバーサイズTシャツ",
+    src: "Demotops.png",
+    front: "images/bigSilhouette_front.png",
+    back: "images/bigSilhouette_back.png",
+    sleeve: "images/bigSilhouette_sleeve.png",
+  },
+  {
+    name: "パーカー",
+    src: "Demotops.png",
+    front: "images/hoodie_front.png",
+    back: "images/hoodie_back.png",
+    sleeve: "images/hoodie_sleeve.png",
+  },
+  {
+    name: "シャツ・ブラウス",
+    src: "Demotops.png",
+    front: "images/longSleeve_front.png",
+    back: "images/longSleeve_back.png",
+    sleeve: "images/longSleeve_sleeve.png",
+  },
+  {
+    //テンプレートを使用しない
+    src: "Demotops.png",
+    front: "Coming soon",
+    back: "",
+    sleeve: "",
+  },
 ];
 //ボトムスの選択肢
 let bottomstemp = [
-  { src: "Demotops.png", front: "bottoms1", back: "" },
-  { src: "Demotops.png", front: "bottoms2", back: "" },
-  { src: "Demotops.png", front: "non-temp", back: "" },
+  {
+    name: "台形ミニスカート",
+    src: "Demotops.png",
+    front: "images/miniskirt_front.png",
+    back: "images/miniskirt_back.png",
+  },
+  {
+    name: "パンツ",
+    src: "Demotops.png",
+    front: "images/pants_front.png",
+    back: "images/pants_back.png",
+  },
+  {
+    //テンプレートを使用しない
+    src: "Demotops.png",
+    front: "Coming soon",
+    back: "",
+  },
 ];
 let katagamiFreamchangefront = "frontfreame";
 let katagamiFreamchangeback = "backfreame";
 let katagamiFreamchangesleeve = "sleevefreame";
+let templateName = "テンプレート名";
 
 function katagamiEvent() {
   // JavaScriptでボタンを挿入するコード
@@ -150,6 +190,7 @@ function katagamiEvent() {
       katagamiFreamchange(item.front);
       katagamiFreamchangefront = item.front;
       katagamiFreamchangeback = item.back;
+      templateName = item.name;
       if (katagami === 1) {
         katagamiFreamchangesleeve = item.sleeve;
       }
@@ -556,6 +597,7 @@ const finish = document
   .getElementById("download")
   .addEventListener("click", () => {
     screenCount = 12;
+    document.getElementById("templateValue").textContent = templateName;
     console.log(screenCount);
     showScreen(screenCount);
   });
@@ -680,7 +722,6 @@ function captureImage() {
 
   //画像に名前をつけて、ダウンロード可能に
   downloadButton.download = "captured_image.png";
-  downloadButton.style.display = "block";
 }
 
 //内カメ外カメのトグル
@@ -716,13 +757,13 @@ document.getElementById("capture").addEventListener("click", () => {
 //メニュー↓
 // インジケーター画像URLリスト
 const IndicatorList = [
-  "indicator.png", // 型紙選択 scr3
-  "path/to/your/image2.png", // 前面撮影 scr4 scr5
-  "path/to/your/image3.png", // 撮影画像の確認（１） scr6
-  "path/to/your/image4.png", // 背面撮影 scr5(shot2)
-  "path/to/your/image5.png", // 撮影画像の確認（２）  scr7
-  "path/to/your/image6.png", // 袖のデザイン scr8 scr9 scr10
-  "path/to/your/image7.png", // 完成 scr11 scr12
+  "images/indicator_1.png", // テンプレート選択 scr3
+  "images/indicator_2.png", // 前面撮影 scr4 scr5
+  "images/indicator_3.png", // 撮影画像の確認（１） scr6
+  "images/indicator_4.png", // 背面撮影 scr5(shot2)
+  "images/indicator_5.png", // 撮影画像の確認（２）  scr7
+  "images/indicator_6.png", // 袖のデザイン scr8 scr9 scr10
+  "images/indicator_7.png", // 完成 scr11 scr12
 ];
 
 //インジケーター
