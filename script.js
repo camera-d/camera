@@ -1,4 +1,4 @@
-/* <script> */
+
 "use strict";
 
 const menuIcon = document.getElementById("menu-icon");
@@ -82,25 +82,6 @@ function toggleVisibility(buttonGroupId) {
     : "block";
 }
 
-// const hiddenbottom = document.getElementById("hiddenbottom");
-
-// const tops = document.getElementById("tops").addEventListener("click", () => {
-//   katagami = 1;
-//   katagamiEvent();
-//   ScreenTransition(2);
-//   // hiddenbottom.style.display = "none";
-//   // incamera.style.display = "block";
-// });
-// const bottoms = document
-//   .getElementById("bottoms")
-//   .addEventListener("click", () => {
-//     katagami = 2;
-
-//     katagamiEvent();
-//     ScreenTransition(2);
-//     // hiddenbottom.style.display = "block";
-//     // incamera.style.display = "none";
-//   });
 //内カメ外カメ設定ボタン
 //内↓
 const incamera = document.getElementById("incamera");
@@ -218,11 +199,13 @@ function katagamiEvent() {
     data = null;
     //初期化してから入れる
     data = topstemp; // トップスデータを使用
+    document.querySelector(".f_area").style.width = "1250px";
   } else if (katagami == 2) {
     //ボトムスの場合
     data = null;
     //初期化してから入れる
-    data = bottomstemp; // トップスデータを使用
+    data = bottomstemp; // ボトムスデータを使用
+    document.querySelector(".f_area").style.width = "750px";
   } else if (katagami > 2) {
     window.alert("型紙がありません");
   }
@@ -261,7 +244,7 @@ function katagamiEvent() {
 //ここで、型紙に応じたフレームを撮影画面でだす。3班に渡す値かもしれない
 function katagamiFreamchange(x) {
   // 引数 x に応じた処理を実行する
-  
+  // alert(`デバッグ用アラート。フレームは値: ${x}`);
   updateIndicator(1);
   ScreenTransition(4);
   console.log(x);
@@ -997,4 +980,4 @@ function closeapp() {
   // 必要に応じて他の終了処理を追加
   window.close(); // ブラウザタブを閉じる (条件によっては動作しないことがあります)
 }
-// </script>
+
