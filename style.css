@@ -8,6 +8,14 @@ button {
   background: transparent; /* 画像の背景を透過 */
   border: none;
 }
+/* 標準フォントの設定 */
+@font-face {
+  font-family: "BIZ UD Gothic";
+  src: url("fonts/BIZUDGothic-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 .TabBack {
   margin-top: 25px;
 }
@@ -20,6 +28,9 @@ button {
 #kiyakuBox {
   color: #908f8f;
   font-size: 13px;
+  line-height: 1.4; /* 行間の設定 */
+  font-family: "BIZ UD Gothic", sans-serif;
+
   margin: auto;
   text-align: left;
   width: 330px;
