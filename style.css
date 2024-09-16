@@ -11,6 +11,7 @@ button {
 #typeselect .text {
   margin: 37px 0;
 }
+#kiyakudoui
 
 /* 追加分CSS↓ */
 #finalconfirmation {
@@ -53,6 +54,7 @@ button {
   font-size: 17px;
 }
 .text_8_9-div {
+  text-align: center;
   height: 167px;
 }
 
@@ -77,14 +79,7 @@ button {
   margin: 0 auto;
   width: 80%; /* 必要に応じて調整 */
 }
-#kiyakudoui,
-#startshoot {
-  padding: 20px 40px;
-  margin: 20px;
-  border: none;
-  cursor: pointer;
-  font-size: 30px;
-}
+
 #typeselect {
   padding: 0;
 }
@@ -102,6 +97,10 @@ button {
 }
 .hidden-buttons button {
   display: block;
+}
+#kiyakudoui,
+#startshoot {
+  margin-top: 30px;
 }
 
 #tops,
