@@ -1,9 +1,15 @@
 body {
   margin: 0;
 }
+.scr {
+  text-align: center;
+}
 button {
   background: transparent; /* 画像の背景を透過 */
   border: none;
+}
+.TabBack {
+  margin-top: 25px;
 }
 .text {
   margin-top: 24px;
@@ -11,7 +17,25 @@ button {
 #typeselect .text {
   margin: 37px 0;
 }
-#kiyakudoui
+#kiyakuBox {
+  color: #908f8f;
+  font-size: 13px;
+  margin: auto;
+  text-align: left;
+  width: 330px;
+  height: 500px;
+  border: 3px solid #175493; /* 境界線 */
+  overflow-y: auto; /* 縦方向にスクロールできるようにする */
+}
+#kiyaku img {
+  margin: 37px 0;
+}
+::-webkit-scrollbar {
+  width: 2px; /* スクロールバーの幅 */
+}
+#kiyakutxt {
+  margin: 37px 0;
+}
 
 /* 追加分CSS↓ */
 #finalconfirmation {
@@ -132,7 +156,8 @@ button {
   margin-left: 0;
 }
 
-#bottoms-buttons {
+#bottoms-buttons,
+#tops-buttons {
   margin-top: 0;
   border-bottom: 0;
 }
