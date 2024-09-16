@@ -10,6 +10,9 @@ const screennum = document.getElementsByClassName("scr");
 console.log(screennum); //確認用コンソール
 
 function showScreen(index) {
+  if (index === 2) {
+    index = 1;
+  }
   for (let i = 0; i < screennum.length; i++) {
     screennum[i].style.display = i === index ? "block" : "none";
   }
@@ -254,12 +257,6 @@ function katagamiEvent() {
     f_area.appendChild(button);
   });
 }
-
-//テンプレ選択画面デバッグ用ボタン
-const temp = document.getElementById("temp").addEventListener("click", () => {
-  updateIndicator(1);
-  ScreenTransition(4);
-});
 
 //ここで、型紙に応じたフレームを撮影画面でだす。3班に渡す値かもしれない
 function katagamiFreamchange(x) {
