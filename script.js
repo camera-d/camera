@@ -261,7 +261,7 @@ function katagamiEvent() {
 //ここで、型紙に応じたフレームを撮影画面でだす。3班に渡す値かもしれない
 function katagamiFreamchange(x) {
   // 引数 x に応じた処理を実行する
-  alert(`デバッグ用アラート。フレームは値: ${x}`);
+  
   updateIndicator(1);
   ScreenTransition(4);
   console.log(x);
