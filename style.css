@@ -132,6 +132,11 @@ button {
   margin-left: 0;
 }
 
+#bottoms-buttons {
+  margin-top: 0;
+  border-bottom: 0;
+}
+
 #outcamera,
 #incamera,
 #bottom_outcamera {
@@ -299,7 +304,7 @@ button {
 
 /* メニュー */
 header {
-  background-color: #333;
+  background-color: #175493;
   color: white;
   height: 89px;
   padding: 10px;
