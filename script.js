@@ -472,10 +472,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // ガイドフレームを描画9/14
       const guideFrame2 = document.querySelector(".guide-frame2");
-      const frameX = (canvas2.width - 300) / 2;
-      const frameY = (canvas2.height - 300) / 2;
+     
+      const frameX = (canvas.width - guideFrame.width) / 2;
+  const frameY = (canvas.height - guideFrame.height) / 2;
 
-      ctx.drawImage(guideFrame2, frameX, frameY, 300, 300);
+
+      ctx.drawImage(guideFrame2, frameX, frameY, guideFrame.width, guideFrame.height);
 
       // 撮影した画像
       let sleeveDataUrl = canvas2.toDataURL("image/png");
