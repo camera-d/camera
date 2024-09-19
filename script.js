@@ -726,10 +726,14 @@ function captureImage() {
 
   // ガイドフレームを描画9/14
   const guideFrame = document.querySelector(".guide-frame");
-  const frameX = (canvas.width - 300) / 2;
-  const frameY = (canvas.height - 300) / 2;
+  const frameX = (canvas.width - guideFrame.width) / 2;
+  const frameY = (canvas.height - guideFrame.height) / 2;
 
-  context.drawImage(guideFrame, frameX, frameY, 300, 300);
+  console.log("canvas size" + canvas.width, canvas.height);
+  console.log("guide size" + guideFrame.width, guideFrame.height);
+
+
+  context.drawImage(guideFrame, frameX, frameY, guideFrame.width, guideFrame.height);
 
   //↑↑
 
