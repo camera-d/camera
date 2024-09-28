@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API Test</title>
+  </head>
+  <body>
+    <h1>APIテスト</h1>
+    <label for="x">Xの値:</label>
+    <input type="number" id="x" value="1" /><br />
+
+    <label for="y">Yの値:</label>
+    <input type="number" id="y" value="2" /><br />
+    <button id="calculate">計算する</button>
+    <p>足し算した結果を表示</p>
+    <div id="result"></div>
+
+    <script>
+      document
+        .getElementById("calculate")
+        .addEventListener("click", function () {
+          const x = document.getElementById("x").value;
+          const y = document.getElementById("y").value;
+          const url =
+            "https://b340-34-80-128-41.ngrok-free.app/add?x=" + x + "&y=" + y; // ngrokのURLに置き換えてください
+
+          fetch(url, {
+            method: "GET", // HTTPメソッド
+            headers: {
+              "ngrok-skip-browser-warning": "true", // 任意のリクエストヘッダー
+            },
+          })
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error("Network response was not ok");
+              }
+              return response.text(); // テキストとして取得
+            })
+            .then((data) => {
+              console.log("受け取ったデータ:", data); // デバッグ用のログ
+              const result = parseFloat(data); // 数値として変換
+              document.getElementById("result").innerText = "結果: " + result; // 結果を表示
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+              document.getElementById("result").innerText =
+                "エラーが発生しました";
+            });
+        });
+    </script>
+  </body>
+</html>
