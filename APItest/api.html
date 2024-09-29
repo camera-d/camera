@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Processing</title>
+  </head>
+  <body>
+    <h1>てすと</h1>
+    <p>この画像を送る。前後袖袖</p>
+    <img
+      src="https://raw.githubusercontent.com/ta03-jp/muchu3/main/longshirt_front.jpg"
+      alt=""
+      width="100px"
+    />
+    <img
+      src="https://ta03-jp.github.io/muchu3/longshirt_back.png"
+      alt=""
+      width="100px"
+    />
+    <img
+      src="https://ta03-jp.github.io/muchu3/longshirt_sleeve.jpg"
+      alt=""
+      width="100px"
+    />
+    <button id="btn">実行</button>
+    <img src="" alt="" id="resultimg" width="200px" />
+    <script>
+      const imageUrls = [
+        "https://raw.githubusercontent.com/ta03-jp/muchu3/main/longshirt_front.jpg",
+        "https://raw.githubusercontent.com/ta03-jp/muchu3/main/longshirt_back.png",
+        "https://raw.githubusercontent.com/ta03-jp/muchu3/main/longshirt_sleeve.jpg",
+        "https://raw.githubusercontent.com/ta03-jp/muchu3/main/longshirt_sleeve.jpg",
+      ];
+
+      document.getElementById("btn").addEventListener("click", function () {
+        fetch("https://767d-34-80-128-41.ngrok-free.app/process_images", {
+          // ngrokのURLを設定
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "ngrok-skip-browser-warning": "true", // 任意のリクエストヘッダー
+          },
+          body: JSON.stringify({ longshirt: imageUrls }),
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(
+                "Network response was not ok " + response.statusText
+              );
+            }
+            console.log("受け取ったデータ:", response); // デバッグ用のログ
+
+            return response.blob(); // 画像データを取得
+          })
+          .then((imageBlob) => {
+            const imageObjectURL = URL.createObjectURL(imageBlob);
+            const imgElement = document.getElementById("resultimg");
+            imgElement.src = imageObjectURL;
+            document.body.appendChild(imgElement); // 画像を表示
+          })
+          .catch((error) => {
+            console.error(
+              "There has been a problem with your fetch operation:",
+              error
+            );
+          });
+      });
+    </script>
+  </body>
+</html>
