@@ -695,6 +695,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const ctxB = canvasB.getContext("2d");
   // カメラを起動する関数
   async function startCamera() {
+    // 既存のストリームがある場合は停止
+  if (currentStream) {
+    currentStream.getTracks().forEach((track) => track.stop());
+  }
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ video: true });
       videoB.srcObject = stream;
