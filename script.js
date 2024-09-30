@@ -935,15 +935,31 @@ document.addEventListener("DOMContentLoaded", () => {
   const canvas2 = document.getElementById("canvas2");
   const capture2 = document.getElementById("capture2");
   const ctx = canvas2.getContext("2d");
-  // カメラを起動する関数
+  //カメラを起動する関数;
   async function startCamera() {
+    const constraints = {
+      video: {
+        facingMode: isFrontCamera ? "user" : "environment",
+      },
+    };
+
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+      // 新しいカメラストリームを取得
+      const stream = await navigator.mediaDevices.getUserMedia(constraints);
+
+      // 既存のストリームがある場合は停止
+      if (currentStream) {
+        currentStream.getTracks().forEach((track) => track.stop());
+        // currentStream = null; // ストリームを解放
+      }
+      currentStream = stream; // 新しいストリームを設定
       video2.srcObject = stream;
     } catch (error) {
       console.error("カメラの起動に失敗しました:", error);
+      alert("カメラの起動に失敗しました:" + error);
     }
   }
+  startCamera(); // 撮影前にカメラを再起動
   // 撮影する関数
   function captureImage() {
     if (video2.srcObject) {
@@ -1020,7 +1036,7 @@ document.addEventListener("DOMContentLoaded", () => {
   capture2.addEventListener("click", captureImage);
 
   // カメラの起動
-  startCamera();
+  
 });
 
 //袖プレビュー　scr10
