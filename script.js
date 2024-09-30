@@ -698,9 +698,11 @@ document.addEventListener("DOMContentLoaded", () => {
     // 既存のストリームがある場合は停止
   if (currentStream) {
     currentStream.getTracks().forEach((track) => track.stop());
+    currentStream = null; // ストリームを解放
   }
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+      currentStream = stream; // 新しいストリームを設定
       videoB.srcObject = stream;
     } catch (error) {
       console.error("カメラの起動に失敗しました:", error);
