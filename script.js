@@ -717,7 +717,7 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("カメラの起動に失敗しました:" + error);
     }
   }
-  }
+  
   // 撮影する処理
   function captureImage() {
     if (videoB.srcObject) {
