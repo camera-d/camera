@@ -695,18 +695,28 @@ document.addEventListener("DOMContentLoaded", () => {
   const ctxB = canvasB.getContext("2d");
   // カメラを起動する関数
   async function startCamera() {
-    // 既存のストリームがある場合は停止
-  if (currentStream) {
-    currentStream.getTracks().forEach((track) => track.stop());
-    currentStream = null; // ストリームを解放
-  }
+   const constraints = {
+      video: {
+        facingMode: isFrontCamera ? "user" : "environment",
+      },
+    };
+
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+      // 新しいカメラストリームを取得
+      const stream = await navigator.mediaDevices.getUserMedia(constraints);
+
+      // 既存のストリームがある場合は停止
+      if (currentStream) {
+        currentStream.getTracks().forEach((track) => track.stop());
+        
+      }
       currentStream = stream; // 新しいストリームを設定
       videoB.srcObject = stream;
     } catch (error) {
       console.error("カメラの起動に失敗しました:", error);
+      alert("カメラの起動に失敗しました:" + error);
     }
+  }
   }
   // 撮影する処理
   function captureImage() {
