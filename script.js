@@ -961,12 +961,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const ctx = canvas2.getContext("2d");
   // カメラを起動する関数
   async function startCamera() {
+    const constraints = {
+      video: {
+        facingMode: isFrontCamera ? "user" : "environment",
+      },
+    };
     //お試し
     if (currentStream) {
       currentStream.getTracks().forEach(track => track.stop()); // ストリーム停止
   }
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+      const stream = await navigator.mediaDevices.getUserMedia(constraints);
       video2.srcObject = stream;
     } catch (error) {
       console.error("カメラの起動に失敗しました:", error);
