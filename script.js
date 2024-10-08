@@ -721,8 +721,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const ctxB = canvasB.getContext("2d");
   // カメラを起動する関数
   async function startCamera() {
+    const constraints = {
+      video: {
+        facingMode: isFrontCamera ? "user" : "environment",
+      },
+    };
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+      const stream = await navigator.mediaDevices.getUserMedia(constraints);
       videoB.srcObject = stream;
     } catch (error) {
       console.error("カメラの起動に失敗しました:", error);
