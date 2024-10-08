@@ -827,46 +827,6 @@ document.addEventListener("DOMContentLoaded", () => {
   //画面遷移後何秒後に起動するという形に変更する
   // カメラの起動
  //startCamera();
-
-    //試し
-    function ScreenTransition(screenNumber) {
-  // 画面遷移の処理
-
-  // カメラ起動画面への遷移時
-  if (screenNumber === 4 || screenNumber === 6) {
-    setTimeout(() => {
-      startCamera();
-    }, 5000); // 5秒後にカメラを起動
-  }
-}
-
-
-let isFrontCamera = true; // カメラの状態を追跡
-
-async function startCamera() {
-  try {
-    const constraints = {
-      video: { facingMode: isFrontCamera ? "user" : "environment" }
-    };
-    const stream = await navigator.mediaDevices.getUserMedia(constraints);
-    const video = document.getElementById("videoB"); // または適切なID
-    video.srcObject = stream;
-  } catch (error) {
-    console.error("カメラの起動に失敗しました:", error);
-  }
-}
-
-// カメラ切り替えボタンのイベントリスナー
-document.getElementById("toggle-cameraB").addEventListener("click", () => {
-  isFrontCamera = !isFrontCamera;
-  // 既存のストリームを停止
-  const video = document.getElementById("videoB");
-  if (video.srcObject) {
-    video.srcObject.getTracks().forEach(track => track.stop());
-  }
-  startCamera();
-});
-
 });
 
 //背面プレビュー　scr7
