@@ -1041,6 +1041,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // イベントリスナーの設定
   capture2.addEventListener("click", captureImage);
+  //内カメ外カメのトグル
+  document.getElementById("toggle-camera2").addEventListener("click", () => {
+    isFrontCamera = !isFrontCamera;
+    startCamera();
+  });
 
   // カメラの起動
   startCamera();
