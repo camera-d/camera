@@ -826,10 +826,10 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   //画面遷移後何秒後に起動するという形に変更する
   // カメラの起動
-  setTimeout(() => {
+  /*setTimeout(() => {
   startCamera();
-}, 5000);
-  //startCamera();
+}, 5000);*/
+  startCamera();
 });
 
 //背面プレビュー　scr7
