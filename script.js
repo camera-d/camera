@@ -523,6 +523,16 @@ cameracontainer.forEach((container) => {
       // 画像要素のsrc属性を変更
       guideFrameB.setAttribute("src", newImageUrl2);
       framecolor = "white";
+
+      //袖　
+      const newImageUrl3 = appendColorToFileName(
+        katagamiFreamchangesleeve,
+        "white"
+      );
+      // 画像要素のsrc属性を変更
+      guideframe2.setAttribute("src", newImageUrl3);
+      framecolor = "white";
+
     } else if (framecolor == "white") {
       // ここに新しい画像のURL_黒を指定
       const newImageUrl = appendColorToFileName(
@@ -540,6 +550,15 @@ cameracontainer.forEach((container) => {
       // 画像要素のsrc属性を変更
       guideFrameB.setAttribute("src", newImageUrl2);
       framecolor = "black";
+
+      //袖　
+      const newImageUrl3 = appendColorToFileName(
+        katagamiFreamchangesleeve,
+        "black"
+      );
+      // 画像要素のsrc属性を変更
+      guideframe2.setAttribute("src", newImageUrl3);
+      framecolor = "black";
     } else {
       // ここに新しい画像のURL_黒を指定
       const newImageUrl = katagamiFreamchangefront;
@@ -550,6 +569,12 @@ cameracontainer.forEach((container) => {
       const newImageUrl2 = katagamiFreamchangeback;
       // 画像要素のsrc属性を変更
       guideFrameB.setAttribute("src", newImageUrl2);
+      framecolor = "red";
+
+      //袖　
+      const newImageUrl3 = katagamiFreamchangesleeve;
+      // 画像要素のsrc属性を変更
+      guideframe2.setAttribute("src", newImageUrl3);
       framecolor = "red";
     }
   });
@@ -687,6 +712,7 @@ const RetakeF = document
     ScreenTransition(4);
   });
 
+
 //背面撮影画面　scr6
 document.addEventListener("DOMContentLoaded", () => {
   const videoB = document.getElementById("videoB");
@@ -695,29 +721,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const ctxB = canvasB.getContext("2d");
   // カメラを起動する関数
   async function startCamera() {
-   const constraints = {
-      video: {
-        facingMode: isFrontCamera ? "user" : "environment",
-      },
-    };
-
     try {
-      // 新しいカメラストリームを取得
-      const stream = await navigator.mediaDevices.getUserMedia(constraints);
-
-      // 既存のストリームがある場合は停止
-      if (currentStream) {
-        currentStream.getTracks().forEach((track) => track.stop());
-        
-      }
-      currentStream = stream; // 新しいストリームを設定
+      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
       videoB.srcObject = stream;
     } catch (error) {
       console.error("カメラの起動に失敗しました:", error);
-      alert("カメラの起動に失敗しました:" + error);
     }
   }
-  
   // 撮影する処理
   function captureImage() {
     if (videoB.srcObject) {
@@ -814,7 +824,7 @@ document.addEventListener("DOMContentLoaded", () => {
     isFrontCamera = !isFrontCamera;
     startCamera();
   });
-
+  //画面遷移後何秒後に起動するという形に変更する
   // カメラの起動
   startCamera();
 });
@@ -910,7 +920,12 @@ function handleAnswer(answer, currentSleeve) {
       window.alert("前面を使用");
       //きりぬき
       imageUrl = IMG1; // ここに画像のURLを指定
-      Cut();
+       // 1番目のデータを3番目に複製
+      imageBlobs.splice(2, 0, imageBlobs[0]);
+      // 2番目のデータを4番目に複製
+      imageBlobs.splice(3, 0, imageBlobs[0]);
+      console.log(imageBlobs.length);
+
       seni = screenCount; //戻ってくる画面を代入する
       sendImageDataToAPI();
       ScreenTransition(11);
@@ -919,7 +934,11 @@ function handleAnswer(answer, currentSleeve) {
 
       //きりぬき
       imageUrl = IMG2; // ここに画像のURLを指定
-      Cut();
+       // 1番目のデータを3番目に複製
+      imageBlobs.splice(2, 0, imageBlobs[1]);
+      // 2番目のデータを4番目に複製
+      imageBlobs.splice(3, 0, imageBlobs[1]);
+      console.log(imageBlobs.length)
 
       seni = screenCount; //戻ってくる画面を代入する
       sendImageDataToAPI();
@@ -935,31 +954,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const canvas2 = document.getElementById("canvas2");
   const capture2 = document.getElementById("capture2");
   const ctx = canvas2.getContext("2d");
-  //カメラを起動する関数;
+  // カメラを起動する関数
   async function startCamera() {
-    const constraints = {
-      video: {
-        facingMode: isFrontCamera ? "user" : "environment",
-      },
-    };
-
     try {
-      // 新しいカメラストリームを取得
-      const stream = await navigator.mediaDevices.getUserMedia(constraints);
-
-      // 既存のストリームがある場合は停止
-      if (currentStream) {
-        currentStream.getTracks().forEach((track) => track.stop());
-        // currentStream = null; // ストリームを解放
-      }
-      currentStream = stream; // 新しいストリームを設定
+      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
       video2.srcObject = stream;
     } catch (error) {
       console.error("カメラの起動に失敗しました:", error);
-      alert("カメラの起動に失敗しました:" + error);
     }
   }
-  startCamera(); // 撮影前にカメラを再起動
   // 撮影する関数
   function captureImage() {
     if (video2.srcObject) {
@@ -1035,13 +1038,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // イベントリスナーの設定
   capture2.addEventListener("click", captureImage);
 
-  //内カメ外カメのトグル
-document.getElementById("toggle-camera2").addEventListener("click", () => {
-  isFrontCamera = !isFrontCamera;
-  startCamera();
-});
   // カメラの起動
-  
+  startCamera();
 });
 
 //袖プレビュー　scr10
@@ -1075,7 +1073,7 @@ function Cut() {
     canvasinput.height = img.height;
     ctx.drawImage(img, 0, 0);
 
-    // 切り取りたい範囲を指定
+    /*// 切り取りたい範囲を指定
     const cutWidth = 100; // 切り取り幅
     const cutHeight = 200; // 切り取り高さ
 
@@ -1090,7 +1088,7 @@ function Cut() {
     outputCanvas.height = cutHeight;
 
     // 切り取り範囲を描画
-    outputCtx.drawImage(
+    canvasinput.drawImage(
       canvasinput,
       x,
       y,
@@ -1100,7 +1098,10 @@ function Cut() {
       0,
       cutWidth,
       cutHeight
-    );
+    );*/
+
+
+    
 
     // 撮影した画像       //撮った画像 解像度をいじるならここ。
     sleeveDataUrl = outputCanvas.toDataURL("image/png");
@@ -1125,6 +1126,14 @@ function Cut() {
         }
         console.log(imageBlobs.length);
         console.log(imageBlobs[2], imageBlobs[3]);
+        
+        /*/ 1番目のデータを3番目に複製
+      imageBlobs.splice(2, 0, imageBlobs[0]);
+      // 2番目のデータを4番目に複製
+      imageBlobs.splice(3, 0, imageBlobs[1]);
+      console.log(imageBlobs.length);
+      sendImageDataToAPI();*/ 
+
 
         // 既存の<img>要素にBlobのURLを設定
         //袖切り抜き時なので
@@ -1155,6 +1164,7 @@ const finish = document
   });
 
 //最終画面　scr12
+
 //最初からやる
 const typeselectbtn = document
   .getElementById("typeselectbtn")
@@ -1182,7 +1192,7 @@ function sendImageDataToAPI() {
     formData.append(`longshirt[]`, blob, `image${index}.png`);
   });
 
-  fetch("https://sensible-trusted-hare.ngrok-free.app/process_images", {
+  fetch("https://reindeer-real-vulture.ngrok-free.app/process_images", {
     method: "POST",
     body: formData,
   })
