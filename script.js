@@ -640,9 +640,9 @@ function captureImage() {
         } else {
           imageBlobs.splice(indexToInsert, 0, blob); // 1番目に挿入
         }
+      
       }
-      // imageBlobs.push(blob);
-
+      
       // 既存の<img>要素にBlobのURLを設定
       //前面撮影時なので
       const photoF = document.getElementById("photoF");
@@ -777,7 +777,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (imageBlobs.length < 2) {
               imageBlobs[indexToInsert] = blob; // 直接代入
             } else {
-              imageBlobs.splice(indexToInsert, 0, blob); // 2番目に挿入
+              imageBlobs.splice(indexToInsert, 1, blob); // 2番目に挿入
             }
           }
           // 既存の<img>要素にBlobのURLを設定
