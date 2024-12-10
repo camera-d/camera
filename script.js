@@ -635,11 +635,8 @@ function captureImage() {
       } else {
         // 2番目の位置に代入
         const indexToInsert = 0; // 1番目:前面
-        if (imageBlobs.length < 1) {
-          imageBlobs[indexToInsert] = blob; // 直接代入
-        } else {
-          imageBlobs.splice(indexToInsert, 0, blob); // 1番目に挿入
-        }
+         imageBlobs[0] = blob; // 直接代入
+       
       
       }
       
@@ -772,13 +769,9 @@ document.addEventListener("DOMContentLoaded", () => {
             imageBlobs = [];
             ScreenTransition(1);
           } else {
-            // 2番目の位置に代入
-            const indexToInsert = 1; // 2番目:背面
-            if (imageBlobs.length < 2) {
-              imageBlobs[indexToInsert] = blob; // 直接代入
-            } else {
-              imageBlobs.splice(indexToInsert, 1, blob); // 2番目に挿入
-            }
+            
+              imageBlobs[1] = blob; // 直接代入
+            
           }
           // 既存の<img>要素にBlobのURLを設定
           //背面撮影時なので
@@ -1021,8 +1014,10 @@ document.addEventListener("DOMContentLoaded", () => {
             // 3番目の位置に代入
             // const indexToInsert = 2; // 3番目:袖1
             // 3番目と4番目に同じ画像を入れる
-            imageBlobs.splice(2, 0, blob); // 3番目に挿入
-            imageBlobs.splice(3, 0, blob); // 4番目に挿入
+            //imageBlobs.splice(2, 0, blob); // 3番目に挿入
+            //imageBlobs.splice(3, 0, blob); // 4番目に挿入
+            imageBlobs[2] = blob;
+            imageBlobs[3] = blob;
           }
           console.log(imageBlobs.length);
           // 既存の<img>要素にBlobのURLを設定
