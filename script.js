@@ -627,7 +627,7 @@ function captureImage() {
       const imageObjectURL = URL.createObjectURL(blob);
 
       // 撮影した画像を配列に追加
-      if (imageBlobs.length >= 4) {
+      if (imageBlobs.length > 4) {
         // 4つを超えた場合は
         window.alert("エラー：撮影画像が多すぎます");
         imageBlobs = [];
@@ -766,7 +766,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const imageObjectURL = URL.createObjectURL(blob);
 
           // 撮影した画像を配列に追加
-          if (imageBlobs.length >= 4) {
+          if (imageBlobs.length > 4) {
             // 4つを超えた場合は
             window.alert("エラー：撮影画像が多すぎます");
             imageBlobs = [];
@@ -1012,7 +1012,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const imageObjectURL = URL.createObjectURL(blob);
 
           // 撮影した画像を配列に追加
-          if (imageBlobs.length >= 4) {
+          if (imageBlobs.length > 4) {
             // 4つを超えた場合は
             window.alert("エラー：撮影画像が多すぎます");
             imageBlobs = [];
