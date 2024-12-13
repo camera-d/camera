@@ -1197,7 +1197,7 @@ function closeapp() {
 
 //API関連
 const imageBlobs = []; // 撮影した画像データを保存する配列
-const fieldName; // フォームデータのフィールド名を変数に格納
+const fieldName = ""; // フォームデータのフィールド名を変数に格納
 
 // 実行ボタン＝scr11に行くときのボタン
 // APIにリクエストする関数を定義
