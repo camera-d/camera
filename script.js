@@ -1202,7 +1202,8 @@ const fieldName; // フォームデータのフィールド名を変数に格納
 // 実行ボタン＝scr11に行くときのボタン
 // APIにリクエストする関数を定義
 function sendImageDataToAPI() {
-  if(templateName = "シャツ・ブラウス"){fieldName = 'longshirt[]'; // フォームデータのフィールド名を変数に格納}else{fieldName = 'bigTshirt[]'}
+  if(templateName = "シャツ・ブラウス"){fieldName = 'longshirt[]'; // フォームデータのフィールド名を変数に格納
+                               }else{fieldName = 'bigTshirt[]'}
   const formData = new FormData();
   imageBlobs.forEach((blob, index) => {
     formData.append(fieldName, blob, `image${index}.png`);
